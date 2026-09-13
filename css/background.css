@@ -1,0 +1,191 @@
+/* ===== BACKGROUND PER-SECTION — tiap halaman foto beda + overlay readability ===== */
+
+/* Fallback global polos (foto per-section di bawah) */
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-color: #333B1C;
+  overflow: hidden;
+}
+
+/* Setiap section foto full-bleed */
+.cover,
+.hero,
+.couple-together,
+.couple-bride,
+.couple-groom,
+.event,
+.countdown,
+.rsvp,
+.wishes,
+.gift,
+.verse,
+.thanks {
+  position: relative;
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  background-color: #333B1C;
+}
+
+/* Overlay dibakar langsung ke background (tanpa ::before agar tidak tabrakan
+   dengan glow/veil yang sudah ada di envelope.css, couple.css, sections.css) */
+.cover {
+  background-image:
+    linear-gradient(180deg, rgba(24, 28, 14, 0.62) 0%, rgba(24, 28, 14, 0.38) 38%, rgba(24, 28, 14, 0.42) 62%, rgba(24, 28, 14, 0.7) 100%),
+    url("../public/images/cincin.jpeg");
+}
+.hero {
+  background-image:
+    linear-gradient(180deg, rgba(24, 28, 14, 0.62) 0%, rgba(24, 28, 14, 0.38) 38%, rgba(24, 28, 14, 0.42) 62%, rgba(24, 28, 14, 0.7) 100%),
+    url("../public/images/abarkopi.jpeg");
+}
+.couple-together {
+  background-image:
+    linear-gradient(180deg, rgba(24, 28, 14, 0.62) 0%, rgba(24, 28, 14, 0.38) 38%, rgba(24, 28, 14, 0.42) 62%, rgba(24, 28, 14, 0.7) 100%),
+    url("../public/images/aubartunang.jpeg");
+}
+.couple-bride {
+  background-image:
+    linear-gradient(180deg, rgba(24, 28, 14, 0.62) 0%, rgba(24, 28, 14, 0.38) 38%, rgba(24, 28, 14, 0.42) 62%, rgba(24, 28, 14, 0.7) 100%),
+    url("../public/images/cincin.jpeg");
+}
+.couple-groom {
+  background-image:
+    linear-gradient(180deg, rgba(24, 28, 14, 0.62) 0%, rgba(24, 28, 14, 0.38) 38%, rgba(24, 28, 14, 0.42) 62%, rgba(24, 28, 14, 0.7) 100%),
+    url("../public/images/cincin.jpeg");
+}
+
+.event {
+  background-image:
+    linear-gradient(180deg, rgba(24, 28, 14, 0.62) 0%, rgba(24, 28, 14, 0.38) 38%, rgba(24, 28, 14, 0.42) 62%, rgba(24, 28, 14, 0.7) 100%),
+    url("../public/images/aubar2.jpeg");
+}
+.countdown {
+  background-image:
+    linear-gradient(180deg, rgba(24, 28, 14, 0.62) 0%, rgba(24, 28, 14, 0.38) 38%, rgba(24, 28, 14, 0.42) 62%, rgba(24, 28, 14, 0.7) 100%),
+    url("../public/images/abarkopi.jpeg");
+}
+.rsvp, .wishes {
+  background-image:
+    linear-gradient(180deg, rgba(24, 28, 14, 0.62) 0%, rgba(24, 28, 14, 0.38) 38%, rgba(24, 28, 14, 0.42) 62%, rgba(24, 28, 14, 0.7) 100%),
+    url("../public/images/cincin.jpeg");
+}
+.gift {
+  background-image:
+    linear-gradient(180deg, rgba(24, 28, 14, 0.62) 0%, rgba(24, 28, 14, 0.38) 38%, rgba(24, 28, 14, 0.42) 62%, rgba(24, 28, 14, 0.7) 100%),
+    url("../public/images/aubarcincin.jpeg");
+}
+.verse {
+  background-image:
+    linear-gradient(180deg, rgba(24, 28, 14, 0.62) 0%, rgba(24, 28, 14, 0.38) 38%, rgba(24, 28, 14, 0.42) 62%, rgba(24, 28, 14, 0.7) 100%),
+    url("../public/images/bunga.jpeg");
+}
+.thanks {
+  background-image:
+    linear-gradient(180deg, rgba(24, 28, 14, 0.62) 0%, rgba(24, 28, 14, 0.38) 38%, rgba(24, 28, 14, 0.42) 62%, rgba(24, 28, 14, 0.7) 100%),
+    url("../public/images/aubar.jpeg");
+  /* Zoom 35% + geser sedikit ke kanan, sedikit ke atas — tinggi auto agar rasio terjaga */
+  background-position: 55% 40%;
+  background-size: 135% auto;
+}
+
+/* Sorotan dari atas (spotlight) — depth vertikal */
+.bg::before {
+  content: "";
+  position: absolute;
+  inset: -20% -30% auto;
+  height: 70%;
+  background: radial-gradient(ellipse 46% 62% at 50% 0%, rgba(245, 238, 220, 0.16), transparent 70%);
+  pointer-events: none;
+}
+
+/* Bayangan lantai + garis horizon emas — depth bawah */
+.bg::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 34%;
+  background:
+    radial-gradient(ellipse 60% 26% at 50% 100%, rgba(227, 201, 130, 0.12), transparent 70%),
+    linear-gradient(180deg, transparent, rgba(24, 28, 14, 0.5));
+  pointer-events: none;
+}
+
+/* Layer batik dimatikan — diganti foto pengantin (disembunyikan agar mudah rollback) */
+.bg-batik,
+.bg-batik-alt {
+  display: none;
+  pointer-events: none;
+}
+
+/* Overlay gelap readability — foto tetap terlihat, teks krem tetap terbaca */
+.bg-night {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgba(24, 28, 14, 0.58) 0%, rgba(24, 28, 14, 0.34) 38%, rgba(24, 28, 14, 0.38) 62%, rgba(24, 28, 14, 0.68) 100%),
+    radial-gradient(ellipse 85% 70% at 50% 42%, transparent 28%, rgba(20, 24, 12, 0.55) 100%);
+  pointer-events: none;
+}
+
+/* Layer 2 — grain kain premium */
+.bg-grain {
+  position: absolute;
+  inset: 0;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  pointer-events: none;
+}
+
+/* Layer 3 — sorotan emas tengah, berdenyut sangat pelan */
+.bg-light {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 38% at 50% 42%, rgba(227, 201, 130, 0.22), transparent 70%),
+    radial-gradient(ellipse 34% 22% at 50% 42%, rgba(251, 244, 224, 0.1), transparent 70%),
+    radial-gradient(ellipse 70% 50% at 50% 110%, rgba(30, 35, 17, 0.5), transparent 65%);
+  pointer-events: none;
+  animation: bgBreathe 10s ease-in-out infinite alternate;
+}
+
+@keyframes bgBreathe {
+  from { opacity: 0.85; }
+  to { opacity: 1; }
+}
+
+/* Layer 4 — vignette dalam untuk depth + keterbacaan teks di atas foto */
+.bg-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 105% 90% at 50% 45%, transparent 30%, rgba(20, 24, 12, 0.72) 100%);
+  pointer-events: none;
+}
+
+/* Mobile — fokus wajah tidak terpotong */
+@media (max-width: 768px) {
+  .cover,
+  .hero,
+  .couple-together,
+  .couple-bride,
+  .couple-groom,
+  .event,
+  .countdown,
+  .rsvp,
+  .wishes,
+  .gift,
+  .verse,
+  .thanks {
+    background-position: center top;
+  }
+  /* Thanks ikut kanan-atas di mobile */
+  .thanks {
+    background-position: 55% 40%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-light { animation: none; }
+}

@@ -1,0 +1,83 @@
+/* ===== AYAT SUCI — Ar-Rum 21, teks Arab RTL + terjemahan ===== */
+
+.verse {
+  padding-top: 90px;
+  padding-bottom: 90px;
+}
+
+.verse-greeting {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 40px;
+}
+
+.verse-salam {
+  font-family: var(--font-arabic);
+  font-size: clamp(1.35rem, 6vw, 1.85rem);
+  line-height: 2.2;
+  color: var(--soft-gold);
+  text-shadow:
+    0 2px 4px rgba(24, 28, 14, 0.9),
+    0 0 20px rgba(227, 201, 130, 0.3);
+}
+
+.verse-greeting-text {
+  max-width: 44ch;
+  margin: 14px auto 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  letter-spacing: 0.03em;
+  line-height: 1.8;
+  color: var(--ivory);
+  text-shadow: 0 1px 4px rgba(24, 28, 14, 0.9);
+}
+
+.verse-arabic {
+  position: relative;
+  z-index: 2;
+  max-width: 40ch;
+  margin: 0 auto;
+  font-family: var(--font-arabic);
+  font-size: clamp(1.2rem, 5.2vw, 1.6rem);
+  line-height: 2.4;
+  color: #FFFDF4;
+  text-shadow:
+    0 2px 4px rgba(24, 28, 14, 0.9),
+    0 0 20px rgba(227, 201, 130, 0.25);
+}
+
+.verse-translation {
+  position: relative;
+  z-index: 2;
+  max-width: 46ch;
+  margin: 22px auto 0;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  color: var(--ivory);
+  text-shadow: 0 1px 4px rgba(24, 28, 14, 0.9);
+}
+
+.verse-source {
+  position: relative;
+  z-index: 2;
+  margin-top: 20px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+  text-transform: uppercase;
+  color: var(--soft-gold);
+  text-shadow: 0 1px 3px rgba(24, 28, 14, 0.9);
+}
+
+@media (min-width: 768px) {
+  .verse {
+    padding-top: 110px;
+    padding-bottom: 110px;
+  }
+}

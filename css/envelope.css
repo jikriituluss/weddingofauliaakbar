@@ -1,0 +1,496 @@
+/* ===== ENVELOPE 3D — royal wedding ===== */
+
+.cover {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  overflow: hidden;
+  transition: opacity 0.9s var(--ease-royal), visibility 0s 0.9s;
+}
+
+.cover.is-fading {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Veil lembut di belakang konten cover — teks menonjol, batik tetap terlihat */
+.cover::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse 75% 55% at 50% 38%, rgba(46, 53, 32, 0.5), transparent 70%),
+    linear-gradient(180deg, rgba(46, 53, 32, 0.28) 0%, transparent 30%, transparent 68%, rgba(46, 53, 32, 0.35) 100%);
+  pointer-events: none;
+}
+
+.cover-inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 520px;
+  height: 100%;
+  max-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+  overflow: hidden;
+  padding: 20px 18px;
+  background:
+    linear-gradient(180deg, rgba(46, 53, 32, 0.32) 0%, rgba(46, 53, 32, 0.18) 40%, rgba(46, 53, 32, 0.32) 100%);
+  border: 1px solid rgba(201, 164, 92, 0.4);
+  outline: 1px solid rgba(251, 247, 234, 0.14);
+  outline-offset: 5px;
+  border-radius: 20px;
+  box-shadow:
+    0 24px 60px rgba(46, 53, 32, 0.4),
+    inset 0 1px 0 rgba(251, 247, 234, 0.18);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+/* --- Scene 3D --- */
+.envelope-scene {
+  position: relative;
+  perspective: 1400px;
+  width: var(--envelope-w);
+  height: var(--envelope-h);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 6px;
+  margin-top: 6px;
+}
+
+.envelope {
+  position: relative;
+  width: var(--envelope-w);
+  height: var(--envelope-h);
+  transform-style: preserve-3d;
+}
+
+/* Ukiran sudut emas — MENYATU di atas kertas amplop */
+.env-corner {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  z-index: 5;
+  pointer-events: none;
+  opacity: 0.95;
+  filter: drop-shadow(0 1px 1px rgba(138, 111, 58, 0.35));
+}
+
+.env-tl { top: 5px; left: 5px; }
+.env-tr { top: 5px; right: 5px; transform: scaleX(-1); }
+.env-bl { bottom: 5px; left: 5px; transform: scaleY(-1); }
+.env-br { bottom: 5px; right: 5px; transform: scale(-1, -1); }
+
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #efe6cf 0%, var(--cream) 45%, #e6d9bc 100%);
+  border-radius: 8px;
+  box-shadow:
+    0 30px 60px -18px rgba(46, 53, 32, 0.55),
+    0 12px 24px rgba(46, 53, 32, 0.3);
+}
+
+/* Kartu di dalam amplop — POTRET mewah */
+.letter {
+  position: absolute;
+  left: 50%;
+  top: 7px;
+  bottom: 9px;
+  width: 62%;
+  transform: translateX(-50%);
+  background-color: var(--ivory);
+  background-image: linear-gradient(180deg, #fdfaf0 0%, var(--ivory) 42%, #efe2c6 100%);
+  border: 1px solid rgba(201, 164, 92, 0.85);
+  outline: 1px solid rgba(201, 164, 92, 0.35);
+  outline-offset: 3px;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 12px 8px;
+  z-index: 2;
+  box-shadow: 0 6px 18px rgba(46, 53, 32, 0.25);
+  transition: transform 1.1s var(--ease-royal), box-shadow 1.1s var(--ease-royal), z-index 0s;
+}
+
+/* Bingkai dalam + titik ukiran di tiap sudut */
+.letter::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid rgba(201, 164, 92, 0.55);
+  border-radius: 2px;
+  background:
+    radial-gradient(circle 2.4px at 6px 6px, #C9A45C 1.8px, transparent 2.6px),
+    radial-gradient(circle 2.4px at calc(100% - 6px) 6px, #C9A45C 1.8px, transparent 2.6px),
+    radial-gradient(circle 2.4px at 6px calc(100% - 6px), #C9A45C 1.8px, transparent 2.6px),
+    radial-gradient(circle 2.4px at calc(100% - 6px) calc(100% - 6px), #C9A45C 1.8px, transparent 2.6px);
+  pointer-events: none;
+}
+
+.letter-filigree {
+  width: 56%;
+  opacity: 0.95;
+}
+
+.letter-eyebrow {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.52rem;
+  letter-spacing: 0.34em;
+  text-indent: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+}
+
+.letter-names {
+  position: relative;
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: 0.12em;
+  text-indent: 0.12em;
+  text-align: center;
+  color: var(--deep-green);
+  padding-bottom: 10px;
+}
+
+/* divider: garis tipis + diamond di bawah nama */
+.letter-names::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  width: 7px;
+  height: 7px;
+  transform: translateX(-50%) rotate(45deg);
+  background: var(--gold);
+  opacity: 0.95;
+}
+
+.letter-names::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 2px;
+  width: 92px;
+  max-width: 90%;
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, var(--gold) 30%, var(--gold) 70%, transparent);
+  opacity: 0.9;
+}
+
+.letter-names em {
+  font-style: italic;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--gold-deep);
+}
+
+.letter-date {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  color: var(--gold-deep);
+}
+
+.letter-sub {
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.52rem;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  color: var(--gold-deep);
+  text-transform: uppercase;
+}
+
+/* Kantong depan amplop — ukiran emas */
+.envelope-pocket {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  background-image: linear-gradient(175deg, #f7f1de 0%, var(--cream) 55%, #e2d3b2 100%);
+  border-radius: 0 0 8px 8px;
+  clip-path: polygon(0 0, 50% 46%, 100% 0, 100% 100%, 0 100%);
+  border-bottom: 1px solid rgba(201, 164, 92, 0.5);
+  box-shadow:
+    inset 0 -14px 24px rgba(125, 143, 75, 0.12),
+    inset 0 0 0 3px rgba(251, 247, 234, 0.55),
+    inset 0 0 0 4px rgba(201, 164, 92, 0.4);
+}
+
+.envelope-pocket::before {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border-radius: 0 0 6px 6px;
+  border: 1px solid rgba(201, 164, 92, 0.4);
+  border-top: none;
+  clip-path: polygon(0 0, 50% 46%, 100% 0, 100% 100%, 0 100%);
+  pointer-events: none;
+}
+
+.envelope-pocket::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 0 0 8px 8px;
+  border: 1px solid rgba(201, 164, 92, 0.4);
+  border-top: none;
+  clip-path: polygon(0 0, 50% 46%, 100% 0, 100% 100%, 0 100%);
+  pointer-events: none;
+}
+
+/* Flap atas — ukiran emas */
+.envelope-flap {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 52%;
+  z-index: 4;
+  transform-origin: top center;
+  transform: rotateX(0deg);
+  transition: transform 1s var(--ease-royal), z-index 0s 0.35s;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  background-image: linear-gradient(180deg, #f2e9d2 0%, var(--cream) 60%, #ded0ae 100%);
+  box-shadow: inset 0 0 0 3px rgba(251, 247, 234, 0.5), inset 0 0 0 4px rgba(201, 164, 92, 0.35);
+  backface-visibility: visible;
+}
+
+.envelope-flap::before {
+  content: "";
+  position: absolute;
+  inset: 6px 10px 10px;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-bottom: 1px solid rgba(201, 164, 92, 0.55);
+  pointer-events: none;
+}
+
+.envelope-flap::after {
+  content: "";
+  position: absolute;
+  inset: 11px 16px 16px;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  border-bottom: 1px solid rgba(201, 164, 92, 0.35);
+  pointer-events: none;
+}
+
+/* ===== Renda tepi amplop — scallop ivory + gold, mengikuti garis V ===== */
+
+.envelope-pocket .lace,
+.envelope-flap .lace {
+  position: absolute;
+  height: 11px;
+  width: 61%;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 1px rgba(138, 111, 58, 0.35));
+  background-repeat: repeat-x;
+}
+
+/* Pocket: renda + garis emas menyusuri tepi V kantong */
+.envelope-pocket .lace {
+  background-image:
+    radial-gradient(circle 5.5px at 6px 0px, var(--ivory) 4.6px, rgba(201, 164, 92, 0.7) 5.2px, transparent 6px),
+    linear-gradient(rgba(201, 164, 92, 0.8), rgba(201, 164, 92, 0.8));
+  background-size: 12px 11px, 100% 1.5px;
+  background-position: 0 1.5px, 0 0;
+  background-repeat: repeat-x, no-repeat;
+}
+
+.envelope-pocket .lace-l { left: 2px; top: 1px; transform: rotate(31.5deg); transform-origin: left center; }
+.envelope-pocket .lace-r { right: 2px; top: 1px; transform: rotate(-31.5deg); transform-origin: right center; }
+
+/* Flap: renda + garis emas menyusuri tepi, ikut terlipat saat dibuka */
+.envelope-flap .lace {
+  background-image:
+    radial-gradient(circle 5.5px at 6px 100%, var(--ivory) 4.6px, rgba(201, 164, 92, 0.7) 5.2px, transparent 6px),
+    linear-gradient(rgba(201, 164, 92, 0.8), rgba(201, 164, 92, 0.8));
+  background-size: 12px 11px, 100% 1.5px;
+  background-position: 0 0, 0 100%;
+  background-repeat: repeat-x, no-repeat;
+}
+
+.envelope-flap .lace-l { left: 3px; top: 5px; transform: rotate(34.5deg); transform-origin: left center; }
+.envelope-flap .lace-r { right: 3px; top: 5px; transform: rotate(-34.5deg); transform-origin: right center; }
+
+/* ===== Ukiran emas filigree ===== */
+
+.filigree {
+  position: absolute;
+  pointer-events: none;
+  filter: drop-shadow(0 1px 1px rgba(138, 111, 58, 0.3));
+}
+
+.filigree-pocket {
+  left: 50%;
+  bottom: 12px;
+  width: 46%;
+  transform: translateX(-50%);
+  opacity: 0.9;
+}
+
+.filigree-flap {
+  left: 50%;
+  top: 11%;
+  width: 34%;
+  transform: translateX(-50%);
+  opacity: 0.9;
+}
+
+/* Wax seal klasik — bulat rapi, ring ganda, monogram ukir */
+.wax-seal {
+  position: absolute;
+  z-index: 5;
+  left: 50%;
+  top: 47%;
+  width: 56px;
+  height: 56px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle 14px at 34% 26%, rgba(255, 235, 238, 0.7), transparent 70%),
+    radial-gradient(circle at 36% 30%, #D98A94 0%, #A63A4A 42%, #6B1F2A 74%, #3E0F16 100%);
+  box-shadow:
+    0 8px 18px rgba(46, 53, 32, 0.5),
+    0 2px 5px rgba(46, 53, 32, 0.35),
+    inset 2px 3px 5px rgba(255, 235, 238, 0.5),
+    inset -3px -4px 8px rgba(42, 10, 15, 0.6),
+    inset 0 0 0 2px rgba(107, 31, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.6s var(--ease-royal), opacity 0.6s var(--ease-royal);
+}
+
+/* Cincin lilin di belakang seal */
+.wax-seal::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #8A2A3B 0%, #4A1219 70%, #2A0A0F 100%);
+  box-shadow:
+    0 6px 14px rgba(46, 53, 32, 0.45),
+    inset 2px 2px 4px rgba(255, 220, 225, 0.35),
+    inset -2px -3px 6px rgba(42, 10, 15, 0.65);
+}
+
+/* Ring ukir ganda di permukaan */
+.wax-seal::before {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border-radius: 50%;
+  border: 2px double rgba(245, 238, 220, 0.6);
+  box-shadow:
+    inset 0 1px 2px rgba(42, 10, 15, 0.6),
+    0 1px 1px rgba(255, 235, 238, 0.35);
+  pointer-events: none;
+}
+
+.wax-seal span {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  color: #F5EEDC;
+  text-shadow:
+    0 -1px 1px rgba(42, 10, 15, 0.8),
+    0 1px 1px rgba(217, 138, 148, 0.6);
+}
+
+/* Ornamen corner gold — dipertegas agar cover tidak polos */
+.corner {
+  position: absolute;
+  width: 84px;
+  height: 84px;
+  opacity: 0.9;
+  pointer-events: none;
+  z-index: 3;
+  filter: drop-shadow(0 2px 6px rgba(46, 53, 32, 0.6)) drop-shadow(0 0 12px rgba(227, 201, 130, 0.3));
+}
+
+.corner-tl { top: 14px; left: 14px; }
+.corner-tr { top: 14px; right: 14px; transform: scaleX(-1); }
+.corner-bl { bottom: 14px; left: 14px; transform: scaleY(-1); }
+.corner-br { bottom: 14px; right: 14px; transform: scale(-1); }
+
+/* Guest block — panel agar nama tamu menonjol */
+.guest-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: center;
+  margin-top: 8px;
+  padding: 10px 26px 12px;
+  background: rgba(46, 53, 32, 0.42);
+  border: 1px solid rgba(201, 164, 92, 0.5);
+  border-radius: 14px;
+  box-shadow:
+    inset 0 1px 0 rgba(251, 247, 234, 0.2),
+    0 12px 28px rgba(46, 53, 32, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  max-width: 100%;
+}
+
+/* Placeholder main invitation */
+.main-placeholder {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s var(--ease-royal);
+}
+
+.main-placeholder.is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.main-placeholder h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-indent: 0.2em;
+  font-size: clamp(1.4rem, 6vw, 2.2rem);
+  color: var(--cream);
+}
+
+.main-placeholder p {
+  margin-top: 10px;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  text-transform: uppercase;
+  opacity: 0.8;
+}

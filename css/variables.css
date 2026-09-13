@@ -1,0 +1,22 @@
+:root {
+  --olive: #ACBF69;
+  --olive-light: #BFCF86;
+  --dark-olive: #7D8F4B;
+  --deep-green: #4F5C32;
+  --deep-green-soft: rgba(79, 92, 50, 0.35);
+  --gold: #C9A45C;
+  --soft-gold: #E3C982;
+  --gold-deep: #8a6f3a;
+  --cream: #F5EEDC;
+  --ivory: #FBF7EA;
+  --ink: #2E3520;
+
+  --font-serif: "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-script: "Alex Brush", "Parisienne", "Allura", "Great Vibes", cursive;
+  --font-sans: "Jost", "Montserrat", system-ui, sans-serif;
+  --font-arabic: "Amiri Quran", "Amiri", "Scheherazade New", "Traditional Arabic", serif;
+
+  --ease-royal: cubic-bezier(0.22, 1, 0.36, 1);
+  --envelope-w: 284px;
+  --envelope-h: 190px;
+}

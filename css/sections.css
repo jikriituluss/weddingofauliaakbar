@@ -1,0 +1,64 @@
+/* ===== Shared section language — judul, divider, desc ===== */
+
+.section {
+  position: relative;
+  padding: 72px 20px;
+  text-align: center;
+  overflow: clip;
+}
+
+.section-head {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 36px;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 8.5vw, 2.8rem);
+  letter-spacing: 0.12em;
+  text-indent: 0.12em;
+  line-height: 1.15;
+  color: #FFFDF4;
+  text-shadow:
+    0 2px 4px rgba(46, 53, 32, 0.9),
+    0 6px 26px rgba(46, 53, 32, 0.6);
+}
+
+.section-rule {
+  width: 140px;
+  height: 14px;
+  opacity: 1;
+  filter: drop-shadow(0 2px 4px rgba(46, 53, 32, 0.7)) drop-shadow(0 0 10px rgba(227, 201, 130, 0.35));
+}
+
+.section-desc {
+  max-width: 44ch;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  line-height: 1.8;
+  color: var(--ivory);
+  text-shadow: 0 1px 4px rgba(46, 53, 32, 0.9);
+}
+
+/* glow tipis di belakang setiap section — ruang kosong terjaga */
+.section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 60% 30% at 50% 18%, rgba(227, 201, 130, 0.14), transparent 68%);
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .section { padding: 96px 24px; }
+  .section-head { margin-bottom: 48px; }
+}

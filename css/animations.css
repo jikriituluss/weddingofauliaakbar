@@ -1,0 +1,110 @@
+/* ===== Animation states — smooth royal, tanpa bounce ===== */
+
+#guestName {
+  opacity: 0;
+  transform: translateY(10px);
+  filter: blur(4px);
+  transition: opacity 1.2s ease-out, transform 1.2s ease-out, filter 1.2s ease-out;
+}
+
+#guestName.is-shown {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.cover-inner > * {
+  animation: riseIn 1.1s var(--ease-royal) both;
+}
+
+.cover-inner > *:nth-child(1) { animation-delay: 0.05s; }
+.cover-inner > *:nth-child(2) { animation-delay: 0.15s; }
+.cover-inner > *:nth-child(3) { animation-delay: 0.3s; }
+.cover-inner > *:nth-child(4) { animation-delay: 0.45s; }
+.cover-inner > *:nth-child(5) { animation-delay: 0.6s; }
+
+@keyframes riseIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== Entrance megah — amplop keluar saat website dibuka ===== */
+
+/* Scene amplop lepas dari riseIn generik */
+.cover-inner > *:nth-child(3) {
+  animation: envelopeEntrance 1.6s var(--ease-royal) backwards;
+  animation-delay: 0.5s;
+}
+
+@keyframes envelopeEntrance {
+  from { opacity: 0; transform: translateY(70px) scale(0.9); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Glow emas di belakang amplop */
+.envelope-scene::before {
+  content: "";
+  position: absolute;
+  inset: -30px -60px;
+  background: radial-gradient(ellipse 60% 45% at 50% 55%, rgba(227, 201, 130, 0.35), transparent 70%);
+  pointer-events: none;
+  animation: glowIn 1.4s ease-out backwards;
+  animation-delay: 0.8s;
+}
+
+@keyframes glowIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Seal memadat setelah amplop tiba */
+.wax-seal {
+  animation: sealPop 0.8s var(--ease-royal) backwards;
+  animation-delay: 1.5s;
+}
+
+@keyframes sealPop {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+  to { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+/* --- Opening sequence (ditrigger JS via .is-opening) --- */
+
+/* 2. wax seal dilepas */
+.envelope.is-opening .wax-seal {
+  transform: translate(-50%, -50%) scale(0.7) rotate(18deg);
+  opacity: 0;
+}
+
+/* 3. flap terbuka */
+.envelope.is-opening .envelope-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+  transition-delay: 0.35s;
+}
+
+/* 4. kartu potret keluar ke atas — mulai SETELAH flap selesai,
+      meluncur di DEPAN amplop */
+.envelope.is-opening .letter {
+  transform: translateX(-50%) translateY(-46%);
+  box-shadow: 0 18px 34px rgba(46, 53, 32, 0.35);
+  transition: transform 1.1s var(--ease-royal) 1.4s, box-shadow 1.1s ease 1.4s, z-index 0s 1.4s;
+  z-index: 6;
+  will-change: transform;
+}
+
+/* 5. kartu melayang naik sedikit — lanjut mulus, tanpa delay warisan */
+.envelope.is-lifted .letter {
+  transform: translateX(-50%) translateY(-50%) scale(1.08);
+  box-shadow: 0 26px 48px rgba(46, 53, 32, 0.45);
+  transition-delay: 0s;
+  transition-duration: 0.65s;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

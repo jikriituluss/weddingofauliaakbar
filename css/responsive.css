@@ -1,0 +1,52 @@
+/* ===== Responsive — mobile first ===== */
+
+@media (max-width: 360px) {
+  :root { --envelope-w: 256px; --envelope-h: 171px; }
+  .cover { padding: 14px 10px; }
+  .cover-inner { padding: 22px 14px 26px; border-radius: 16px; }
+  .guest-block { padding: 14px 18px 16px; }
+  .btn-open { padding: 14px 34px; }
+  .corner { width: 56px; height: 56px; }
+  .envelope-pocket .lace,
+  .envelope-flap .lace { background-size: 10px 9px, 100% 1px; height: 9px; }
+  .env-corner { width: 36px; height: 36px; }
+  .env-tl { top: 4px; left: 4px; }
+  .env-tr { top: 4px; right: 4px; }
+  .env-bl { bottom: 4px; left: 4px; }
+  .env-br { bottom: 4px; right: 4px; }
+}
+
+@media (min-width: 768px) {
+  :root { --envelope-w: 360px; --envelope-h: 238px; }
+  .wax-seal { width: 58px; height: 58px; }
+  .wax-seal span { font-size: 0.9rem; }
+  .corner { width: 96px; height: 96px; }
+}
+
+@media (min-width: 1024px) {
+  :root { --envelope-w: 420px; --envelope-h: 276px; }
+  .corner { width: 120px; height: 120px; opacity: 0.9; }
+  .env-corner { width: 56px; height: 56px; }
+}
+
+@media (min-width: 1440px) {
+  .cover-inner { max-width: 580px; }
+}
+
+/* Pastikan amplop selalu di tengah & tidak overflow */
+.envelope-scene {
+  max-width: 92vw;
+}
+
+/* Layar pendek — padatkan agar cover muat tanpa scroll */
+@media (max-height: 720px) {
+  :root { --envelope-w: 248px; --envelope-h: 165px; }
+  .cover-inner { gap: 6px; padding: 14px 12px; }
+  .couple-names .bride,
+  .couple-names .groom { font-size: clamp(2.4rem, 12vw, 3.4rem); }
+  .couple-names .amp { font-size: 1.2rem; margin: 0.2em 0; }
+  .guest-block { padding: 8px 20px 10px; margin-top: 4px; }
+  .btn-open { padding: 11px 32px; }
+  .corner { width: 52px; height: 52px; }
+  .eyebrow { font-size: 0.66rem; }
+}

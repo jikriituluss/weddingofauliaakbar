@@ -1,0 +1,86 @@
+/* ===== COUNTDOWN — angka serif mewah, bukan dashboard ===== */
+
+/* Section setinggi foto (satu layar penuh) */
+.countdown {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cd-grid {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.cd-unit {
+  flex: 1;
+  min-width: 0;
+  padding: 18px 6px 16px;
+  background: rgba(46, 53, 32, 0.45);
+  border: 1px solid rgba(201, 164, 92, 0.45);
+  border-radius: 12px;
+  box-shadow:
+    inset 0 1px 0 rgba(251, 247, 234, 0.16),
+    0 12px 28px rgba(30, 35, 17, 0.4);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.cd-num {
+  display: block;
+  font-family: var(--font-serif);
+  font-weight: 600;
+  font-size: clamp(1.9rem, 9vw, 2.8rem);
+  line-height: 1;
+  color: #FFFDF4;
+  font-variant-numeric: tabular-nums;
+  text-shadow:
+    0 2px 4px rgba(30, 35, 17, 0.9),
+    0 0 18px rgba(227, 201, 130, 0.25);
+}
+
+.cd-label {
+  display: block;
+  margin-top: 8px;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-indent: 0.3em;
+  text-transform: uppercase;
+  color: var(--soft-gold);
+}
+
+.cd-date {
+  position: relative;
+  z-index: 2;
+  margin-top: 22px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  color: var(--ivory);
+  text-shadow: 0 1px 4px rgba(30, 35, 17, 0.9);
+}
+
+.cd-done {
+  position: relative;
+  z-index: 2;
+  margin-top: 22px;
+  font-family: var(--font-script);
+  font-size: 2.4rem;
+  line-height: 1.3;
+  color: var(--soft-gold);
+  text-shadow: 0 2px 8px rgba(30, 35, 17, 0.9);
+}
+
+@media (min-width: 768px) {
+  .cd-grid { gap: 16px; }
+  .cd-unit { padding: 24px 10px 22px; }
+}
