@@ -137,57 +137,29 @@ body.opened .music-btn {
   text-shadow: 0 1px 3px rgba(30, 35, 17, 0.9);
 }
 
-/* --- Footer --- */
-.footer {
-  position: relative;
-  z-index: 1;
-  padding: 64px 24px 90px;
-  text-align: center;
-  border-top: 1px solid rgba(201, 164, 92, 0.28);
-  overflow: clip;
-}
-
-.footer::before {
-  content: "";
+/* --- Creator note (tengah bawah thanks, mepet bawah) --- */
+.creator-note {
   position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse 60% 50% at 50% 30%, rgba(227, 201, 130, 0.14), transparent 70%);
+  left: 0;
+  right: 0;
+  bottom: calc(10px + env(safe-area-inset-bottom));
+  z-index: 3;
+  margin: 0;
+  padding: 0 24px;
+  text-align: center;
+  font-family: var(--font-sans);
+  font-size: 0.58rem;
+  letter-spacing: 0.18em;
+  text-indent: 0.18em;
+  text-transform: uppercase;
+  color: rgba(245, 238, 220, 0.5);
+  text-shadow: 0 1px 3px rgba(20, 24, 12, 0.8);
   pointer-events: none;
-}
-
-.footer-names {
-  position: relative;
-  margin-top: 10px;
-  font-family: var(--font-script);
-  font-size: clamp(2.6rem, 12vw, 3.6rem);
-  line-height: 1.25;
-  color: #FFFDF4;
-  text-shadow:
-    0 2px 4px rgba(30, 35, 17, 0.9),
-    0 4px 20px rgba(30, 35, 17, 0.55);
-}
-
-.footer-date {
-  position: relative;
-  margin-top: 8px;
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-size: 1rem;
-  letter-spacing: 0.08em;
-  color: var(--soft-gold);
-}
-
-.footer-rule {
-  position: relative;
-  width: 110px;
-  margin: 18px auto 0;
-  opacity: 0.9;
 }
 
 /* Anchor halus */
 .section[id],
-.hero[id],
-.footer {
+.hero[id] {
   scroll-margin-top: 16px;
 }
 
