@@ -11,7 +11,7 @@ window.WEDDING = {
   akad: {
     title: "Akad Nikah",
     date: "Sabtu, 10 Oktober 2026",
-    time: "08.00 WIB",
+    time: "08.00 - Selesai WIB",
     place: "Khatulistiwa Ballroom, Transera Hotel Pontianak",
     address: "Jl. Gajah Mada N0. 21, Kota Pontianak",
     maps: "https://share.google/rr6SAagjE7ScIgLwn"
@@ -20,7 +20,7 @@ window.WEDDING = {
   resepsi: {
     title: "Resepsi",
     date: "Sabtu, 10 Oktober 2026",
-    time: "14.00 WIB",
+    time: "14.00 - 18.00 WIB",
     place: "Khatulistiwa Ballroom, Transera Hotel Pontianak",
     address: "Jl. Gajah Mada N0. 21, Kota Pontianak",
     maps: "https://share.google/rr6SAagjE7ScIgLwn"

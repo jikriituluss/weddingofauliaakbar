@@ -30,9 +30,12 @@
   font-family: var(--font-script);
   font-weight: 400;
   font-size: clamp(3.2rem, 16vw, 5rem);
-  letter-spacing: 0.02em;
-  line-height: 1.15;
-  padding: 0 0.3em;
+  /* script rangkai wajib letter-spacing 0 agar sambung */
+  letter-spacing: 0;
+  /* line-height longgar agar swash/ekor (y, A) tidak kepotong overflow container */
+  line-height: 1.3;
+  padding: 0 0.35em 0.15em;
+  overflow: visible;
 }
 
 /* semi-rangkai rapi: nol tumpukan, swash hanya menyentuh & secara visual */
@@ -75,11 +78,11 @@
   background: linear-gradient(90deg, var(--gold), transparent);
 }
 
-/* Huruf depan nama pengantin besar dan tegas */
+/* Huruf depan: JANGAN dibesarkan di font script — ::first-letter memutus sambungan rangkai di Chrome */
 .couple-names .bride::first-letter,
 .couple-names .groom::first-letter {
-  font-size: 1.12em;
-  line-height: 1;
+  font-size: 1em;
+  line-height: inherit;
 }
 
 .guest-label {
